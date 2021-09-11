@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {Text, StyleSheet} from 'react-native';
 import { measures, fonts, colors } from '../styles';
 
 type Props = {
-    children: string
+    children: ReactNode
 }
 function BodyText({children}: Props) {
     return  (
