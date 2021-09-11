@@ -24,7 +24,7 @@ function CreatePasscode() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <HeaderText>
-                    Create a Passcode
+                    Create a Password
                 </HeaderText>
                 <TouchableOpacity>
                     <Animated.View style={[styles.icon, {opacity: nextOpacity.current}]}>
