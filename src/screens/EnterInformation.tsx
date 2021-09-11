@@ -51,7 +51,12 @@ const questions: Question[] = [
     }
 ]
 
-function EnterInformation() {
+type Props = {
+    navigation: {
+        navigate: (s: string) => void
+    }
+}
+function EnterInformation(props: Props) {
     const answers = useRef<Record<string,unknown>>({});
     const [validAnswers, setValidAnswers] = useState(0);
     
@@ -64,6 +69,7 @@ function EnterInformation() {
     const next = () => {
         store("health_data", answers.current).then(() => {
             // stored, should navigate to next page
+            props.navigation.navigate("Home");
         });
     }
 
@@ -75,7 +81,7 @@ function EnterInformation() {
                     <HeaderText>
                         Your Information
                     </HeaderText>
-                    <TouchableOpacity disabled={validAnswers != questions.length}>
+                    <TouchableOpacity disabled={validAnswers != questions.length} onPress={next}>
                         <Animated.View style={[styles.icon, {opacity: buttonOpacity.current}]}>
                             <Icon name="chevron-right" style={{fontSize: 42, color: 'white', marginLeft: -2}}/>
                         </Animated.View>
@@ -116,7 +122,7 @@ function EnterInformation() {
                         }}/>
                     )
                 })}
-                <TouchableOpacity disabled={validAnswers != questions.length}>
+                <TouchableOpacity disabled={validAnswers != questions.length} onPress={next}>
                     <Animated.View style={[styles.get_started_button, {opacity: buttonOpacity.current}]}>
                         <Text style={styles.get_started_button_text}>Get Started</Text>
                     </Animated.View>

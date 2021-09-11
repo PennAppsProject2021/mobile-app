@@ -5,7 +5,12 @@ import HeaderText from "../components/HeaderText";
 import BodyText from "../components/BodyText";
 import Icon from 'react-native-vector-icons/EvilIcons'
 
-function CreatePasscode() {
+type Props = {
+    navigation: {
+        navigate: (s: string) => void
+    }
+}
+function CreatePasscode(props: Props) {
     const [pw, setPw] = useState("");
     const [pwc, setPwc] = useState("");
 
@@ -26,7 +31,7 @@ function CreatePasscode() {
                 <HeaderText>
                     Create a Password
                 </HeaderText>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate("EnterInformation")}>
                     <Animated.View style={[styles.icon, {opacity: nextOpacity.current}]}>
                         <Icon name="chevron-right" style={{fontSize: 42, color: 'white', marginLeft: -2}}/>
                     </Animated.View>

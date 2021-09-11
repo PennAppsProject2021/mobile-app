@@ -8,18 +8,24 @@
  * @format
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { UserDataProvider } from './src/context/UserDataProvider';
+import Home from './src/screens/Home';
 import OnBoard from './src/screens/OnBoard';
 import CreatePasscode from './src/screens/CreatePasscode';
 import EnterInformation from './src/screens/EnterInformation';
-import { UserDataProvider } from './src/context/UserDataProvider';
-import Home from './src/screens/Home';
 
 function App() {
+  const [sc, setSc] = useState("OnBoard");
+  // React navigation libraries are all shitty
+
   return (
-    <UserDataProvider>
-      <Home/>
-    </UserDataProvider>
+      <UserDataProvider>
+        {sc === "OnBoard" && <OnBoard navigation={{navigate: (s) => setSc(s)}}/>}
+        {sc === "CreatePasscode" && <CreatePasscode navigation={{navigate: (s) => setSc(s)}} />}
+        {sc === "EnterInformation" && <EnterInformation navigation={{navigate: (s) => setSc(s)}}/>}
+        {sc === "Home" && <Home/>}
+      </UserDataProvider>
   )
 }
 

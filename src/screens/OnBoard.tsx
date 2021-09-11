@@ -1,8 +1,13 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity, ImagePropTypes } from "react-native";
 import { colors, measures, fonts } from '../styles';
 
-function OnBoard() {
+type Props = {
+    navigation: {
+        navigate: (s: string) => void
+    }
+}
+function OnBoard(props: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.cta}>
@@ -16,7 +21,7 @@ function OnBoard() {
                 </Text>
             </View>
             <View style={styles.controls}>
-                <TouchableOpacity style={styles.get_started_button}>
+                <TouchableOpacity style={styles.get_started_button} onPress={() => props.navigation.navigate("CreatePasscode")}>
                     <Text style={styles.get_started_button_text}>Get Started</Text>
                 </TouchableOpacity>
             </View>
