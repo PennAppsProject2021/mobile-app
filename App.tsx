@@ -12,10 +12,14 @@ import React, { useEffect } from 'react';
 import OnBoard from './src/screens/OnBoard';
 import CreatePasscode from './src/screens/CreatePasscode';
 import EnterInformation from './src/screens/EnterInformation';
+import { UserDataProvider } from './src/context/UserDataProvider';
+import Home from './src/screens/Home';
 
 function App() {
   return (
-    <EnterInformation/>
+    <UserDataProvider>
+      <Home/>
+    </UserDataProvider>
   )
 }
 
