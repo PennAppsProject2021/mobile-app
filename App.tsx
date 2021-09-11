@@ -10,10 +10,11 @@
 
 import React, { useEffect } from 'react';
 import OnBoard from './src/screens/OnBoard';
+import CreatePasscode from './src/screens/CreatePasscode';
 
 function App() {
   return (
-    <OnBoard/>
+    <CreatePasscode/>
   )
 }
 

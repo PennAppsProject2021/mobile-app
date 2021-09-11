@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import { colors, measures, fonts } from '../styles';
 
 function OnBoard() {
     return (
@@ -29,14 +30,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         display: 'flex',
-        padding: 20
+        padding: measures.margins.gutter,
+        backgroundColor: colors.bgLight
     },
     header_text: {
-        fontSize: 32,
-        marginBottom: 12
+        fontSize: measures.fonts.header,
+        marginBottom: measures.margins.line,
+        fontFamily: fonts.header,
+        color: colors.textDark
     },
     body_text: {
-        fontSize: 18
+        fontSize: measures.fonts.body,
+        fontFamily: fonts.body,
+        color: colors.textDark
     },
     cta: {
         flexGrow: 1
@@ -45,16 +51,18 @@ const styles = StyleSheet.create({
 
     },
     get_started_button: {
-        backgroundColor: "#3EB595",
+        backgroundColor: colors.green,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 9,
-        padding: 16
+        borderRadius: measures.borderRadius,
+        padding: measures.fonts.button - 4,
+        elevation: 6
     },
     get_started_button_text: {
-        color: "#FFFFFF",
-        fontSize: 20
+        color: colors.textLight,
+        fontSize: measures.fonts.button,
+        fontFamily: fonts.body
     }
 });
