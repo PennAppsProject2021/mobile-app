@@ -11,10 +11,11 @@
 import React, { useEffect } from 'react';
 import OnBoard from './src/screens/OnBoard';
 import CreatePasscode from './src/screens/CreatePasscode';
+import EnterInformation from './src/screens/EnterInformation';
 
 function App() {
   return (
-    <CreatePasscode/>
+    <EnterInformation/>
   )
 }
 
