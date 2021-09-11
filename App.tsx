@@ -16,8 +16,7 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
-  View,
-  NativeModules
+  View
 } from 'react-native';
 
 import {
@@ -27,6 +26,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import { virgilCrypto } from 'react-native-virgil-crypto';
+import { decrypt, encrypt } from './src/util/encryption';
 
 const Section: React.FC<{
   title: string;
@@ -64,16 +66,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    const RNPGP = NativeModules.ReactNativePGP;
-    const userName = 'myUsername';
-    const keyBits = 4096;
-    const keyPassword = 'mySuperSecretPassword';
-     
-    RNPGP.generateKeyPair(userName, keyBits, keyPassword).then(kp => {
-      console.log(kp.privateKey);
-      console.log(kp.publicKey);
-    });
-  }, []);
+    const keyPair = virgilCrypto.generateKeys();
+    const data = "hi";
+    console.log(decrypt(encrypt(data, keyPair.publicKey), keyPair.privateKey));
+  }, [])
 
   return (
     <SafeAreaView style={backgroundStyle}>

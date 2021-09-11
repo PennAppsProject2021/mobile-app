@@ -1280,6 +1280,11 @@
   "resolved" "https://registry.npmjs.org/@types/node/-/node-16.9.1.tgz"
   "version" "16.9.1"
 
+"@types/node@^13.1.8":
+  "integrity" "sha512-s3nugnZumCC//n4moGGe6tkNMyYEdaDBitVjwPxXmR5lnMG5dHePinH2EdxkG3Rh1ghFHHixAG4NJhpJW1rthQ=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-13.13.52.tgz"
+  "version" "13.13.52"
+
 "@types/normalize-package-data@^2.4.0":
   "integrity" "sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw=="
   "resolved" "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz"
@@ -1406,6 +1411,13 @@
   "version" "3.10.1"
   dependencies:
     "eslint-visitor-keys" "^1.1.0"
+
+"@virgilsecurity/crypto-types@1.1.1":
+  "integrity" "sha512-c/uoOcFIU+YV8w+om1VBergNkBTkqzbAakZCzp4hsYBjZw3EYVKcNBIyNFjPGgbFZdJ/ewE6Qt3wmbL1Yv4a2g=="
+  "resolved" "https://registry.npmjs.org/@virgilsecurity/crypto-types/-/crypto-types-1.1.1.tgz"
+  "version" "1.1.1"
+  dependencies:
+    "@types/node" "^13.1.8"
 
 "abab@^2.0.3", "abab@^2.0.5":
   "integrity" "sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q=="
@@ -1842,7 +1854,7 @@
     "mixin-deep" "^1.2.0"
     "pascalcase" "^0.1.1"
 
-"base64-js@^1.1.2", "base64-js@^1.5.1":
+"base64-js@^1.1.2", "base64-js@^1.3.1", "base64-js@^1.5.1":
   "integrity" "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA=="
   "resolved" "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
   "version" "1.5.1"
@@ -1924,6 +1936,14 @@
   "integrity" "sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ=="
   "resolved" "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.2.tgz"
   "version" "1.1.2"
+
+"buffer@^5.4.3":
+  "integrity" "sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ=="
+  "resolved" "https://registry.npmjs.org/buffer/-/buffer-5.7.1.tgz"
+  "version" "5.7.1"
+  dependencies:
+    "base64-js" "^1.3.1"
+    "ieee754" "^1.1.13"
 
 "bytes@3.0.0":
   "integrity" "sha1-0ygVQE1olpn4Wk6k+odV3ROpYEg="
@@ -3300,6 +3320,11 @@
   "version" "0.4.24"
   dependencies:
     "safer-buffer" ">= 2.1.2 < 3"
+
+"ieee754@^1.1.13":
+  "integrity" "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA=="
+  "resolved" "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz"
+  "version" "1.2.1"
 
 "ignore@^4.0.6":
   "integrity" "sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg=="
@@ -5358,12 +5383,15 @@
     "jscodeshift" "^0.11.0"
     "nullthrows" "^1.1.1"
 
-"react-native-pgp@^0.0.5":
-  "integrity" "sha512-dBNnZNgbNIerENSTP7YcwV+AcSHaLlsaLfKPz2+RhMqIG/8SIYTWJ5xdU1BEUF5Paf2MBQxYTyf1EEL0EtqoVA=="
-  "resolved" "https://registry.npmjs.org/react-native-pgp/-/react-native-pgp-0.0.5.tgz"
-  "version" "0.0.5"
+"react-native-virgil-crypto@^0.6.1":
+  "integrity" "sha512-Ww7osI/NMfFskP6VMhm2YjKg6a1x7+qyZPJUsRdIPBejgubFdsB5Og5ldkYCSy45bGOHWAdD097m3/YSGgGtYA=="
+  "resolved" "https://registry.npmjs.org/react-native-virgil-crypto/-/react-native-virgil-crypto-0.6.1.tgz"
+  "version" "0.6.1"
+  dependencies:
+    "@virgilsecurity/crypto-types" "1.1.1"
+    "buffer" "^5.4.3"
 
-"react-native@>=0.38.0", "react-native@>=0.65.0-rc.0 || 0.0.0-*", "react-native@0.65.1":
+"react-native@>=0.59.0-rc.0 <1.0.x", "react-native@>=0.65.0-rc.0 || 0.0.0-*", "react-native@0.65.1":
   "integrity" "sha512-0UOVSnlssweQZjuaUtzViCifE/4tXm8oRbxwakopc8GavPu9vLulde145GOw6QVYiOy4iL50f+2XXRdX9NmMeQ=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.65.1.tgz"
   "version" "0.65.1"
@@ -5422,7 +5450,7 @@
     "react-shallow-renderer" "^16.13.1"
     "scheduler" "^0.20.2"
 
-"react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@17.0.2":
+"react@^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.1", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
