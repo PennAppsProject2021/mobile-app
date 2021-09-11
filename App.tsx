@@ -29,6 +29,7 @@ import {
 
 import { virgilCrypto } from 'react-native-virgil-crypto';
 import { decrypt, encrypt } from './src/util/encryption';
+import { store, retrieve } from './src/util/storage';
 
 const Section: React.FC<{
   title: string;
@@ -69,6 +70,11 @@ const App = () => {
     const keyPair = virgilCrypto.generateKeys();
     const data = "hi";
     console.log(decrypt(encrypt(data, keyPair.publicKey), keyPair.privateKey));
+    store("test", {a: "b"}).then(() => {
+      retrieve("test").then(data => {
+        console.log(data.a);
+      });
+    })
   }, [])
 
   return (
