@@ -7,6 +7,9 @@ import BodyText from '../components/BodyText';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import Modal from 'react-native-modal';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import { encrypt } from '../util/encryption';
+import { retrieve } from '../util/storage';
+import { IKeyPair } from 'react-native-virgil-crypto';
 
 type Study = {
     Timestamp: number,
@@ -21,7 +24,6 @@ function Home() {
     const [shareUp, setShareUp] = useState(false);
     
     useEffect(() => {
-        // Poll data from Noah
         setTimeout(() => {
             const ms = Date.now();
             fetch("http://10.0.2.2:5000/studiesRequest").then(data => data.json()).then(j => {
@@ -29,14 +31,13 @@ function Home() {
                 if(Object.keys(j).length > 0) {
                     // Get permission
                     const most_recent = j[Object.keys(j)[Object.keys(j).length-1]] as Study;
-                    // assume it matches for now
+                    // Hardcode for reproducible demo
                     startPrompt(most_recent);
                 }
             }).catch(e => {
                 console.log(e);
             })
         }, 500)
-        // fetch("http://10.0.2.2:5000/researchRequest", {headers: {'Content-Type': 'application/json'}, method: 'POST', body: JSON.stringify({X: {"a": "b"}, "Y": {c: true}, "University": "OSU"})}).then(res => res.text()).then(res => console.log(res)).catch(e => console.log(e));
     }, []);
 
     const startPrompt = (s: Study) => {
@@ -49,7 +50,7 @@ function Home() {
 
     const save = () => {
         setStudy(undefined);
-        // Hardcode for now
+        // Hardcode for demo
         fetch("http://10.0.2.2:5000/mobileRequest", {
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
@@ -60,6 +61,19 @@ function Home() {
     const eraseStorage = () => {
         EncryptedStorage.setItem("health_data", "");
     }
+
+    const share = () => {
+        retrieve("health_data").then(data => {
+            const enc = encrypt(JSON.stringify(data), dref.current as unknown as IKeyPair['publicKey']);
+            fetch("http://10.0.2.2./upload", {
+                headers: {'Content-Type': 'application/json'},
+                method: 'POST',
+                body: JSON.stringify({[dref.current as string]: enc})
+            })
+        })
+    }
+
+    const dref = useRef<string>();
 
     return (
         <View style={styles.container}>
@@ -74,7 +88,7 @@ function Home() {
             </BodyText>
             <View style={styles.scannerView}>
                 <QRCodeScanner
-                    onRead={(data) => {setShareUp(true)}}
+                    onRead={(data) => {setShareUp(true); dref.current = data.rawData;}}
                 />
             </View>
             <Modal isVisible={study != undefined}>
@@ -84,7 +98,7 @@ function Home() {
                             You're eligible to participate in a new study.
                         </HeaderText>
                         <BodyText>
-                            This study is conducted by researchers at {study?.University}.
+                            This study is conducted by researchers at Stanford University.
                             They will receive your data temporarily for the study,
                             after which it will be deleted. Would you like to participate?
                         </BodyText>
@@ -115,7 +129,7 @@ function Home() {
                         <TouchableOpacity style={[styles.get_started_button, {marginRight: 10, backgroundColor: "#F03220"}]} onPress={() => setShareUp(false)}>
                             <Text style={styles.get_started_button_text}>No</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={[styles.get_started_button, {marginLeft: 10}]} onPress={() => setShareUp(false)}>
+                        <TouchableOpacity style={[styles.get_started_button, {marginLeft: 10}]} onPress={() => {setShareUp(false); share()}}>
                             <Text style={styles.get_started_button_text}>Yes</Text>
                         </TouchableOpacity>
                     </View>

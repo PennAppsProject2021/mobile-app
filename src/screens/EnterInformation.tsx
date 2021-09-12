@@ -48,6 +48,11 @@ const questions: Question[] = [
         prompt: "Have you been hospitalized for COVID-19?",
         answer: {type: "multiradio", options: ["Yes", "No"]},
         id: "had_c19_hospitalization"
+    },
+    {
+        prompt: "How many weeks were you in the hospital?",
+        answer: {type: "numeric"},
+        id: "c19_weeks"
     }
 ]
 
